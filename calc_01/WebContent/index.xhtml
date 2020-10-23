@@ -3,29 +3,46 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Kalkulator kredytowy</title>
 </h:head>
 <h:body>
 
-	<h1>Kalkulator kredytowy</h1>
+<p:panel style="margin-top:50px;margin-left:40%;margin-right:40%" >
+<h1 align="center">Kalkulator kredytowy</h1>
 
 	<h:form id="bla">
-  		Kwota: <h:inputText value="#{creditBB.amount}" />
+	<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+ 
+    <h:panelGrid columns="1" cellpadding="1" style="margin-left: 80px; margin-top: 50px">
+    <h:panelGrid columns="1">
+			<p:inputText id= "amount" value="#{creditBB.amount}" placeholder="Kwota" required = "true" requiredMessage = "Wpisz kwotę!"/>
+			<p:slider for="amount" minValue="1" maxValue="10000" step="1" />
+			<p:message for="amount"/>
+    	</h:panelGrid>
 		<br />
-  		Lat: <h:inputText value="#{creditBB.years}" />
+		<h:panelGrid columns="1" >
+			<p:inputText id= "years" value="#{creditBB.years}" placeholder="Lat" required  = "true" requiredMessage = "Wpisz na ile lat ma być kredyt!"/>
+			<p:slider for="years" minValue="1" maxValue="50" step="1" />
+			<p:message for="years"/>
+    	</h:panelGrid>
+		<br />  		
+		<h:panelGrid columns="1">
+        	<p:inputText id= "percent" value="#{creditBB.percent}" placeholder="Procent" required  = "true" requiredMessage = "Wpisz oprocentowanie!"/>
+        	<p:slider for="percent" minValue="1" maxValue="10" step="0.1" />
+        	<p:message for="percent"/>
+    	</h:panelGrid>
 		<br />
-		Procent (punkty procentowe): <h:inputText value="#{creditBB.percent}" />
+		<h:panelGrid columns="1" style="margin-left: 45px">
+			<p:commandButton value="Oblicz" action="#{creditBB.calc()}" update="@form"/>
+		</h:panelGrid>
 		<br />
-		
-		<h:messages id="msg" />
-
-		<h:commandButton value="Oblicz" action="#{creditBB.calc()}"/>
-		<br />
-		
-		<h:commandLink value="Informacje" action="#{creditBB.info()}" />
+	 </h:panelGrid>	
 	</h:form>
+	
+	</p:panel>
 
 </h:body>
 </html>

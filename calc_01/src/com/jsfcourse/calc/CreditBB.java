@@ -17,6 +17,9 @@ public class CreditBB {
 	private Double result;
 	
 	
+	@Inject
+	FacesContext ctx;
+	
 	public String getAmount() {
 		return amount;
 	}
@@ -44,26 +47,18 @@ public class CreditBB {
 		return result;
 	}
 
-	public void setResult(Double result) {
-		this.result = result;
-	}
 	
 	
-
 	
-
-	@Inject
-	FacesContext ctx;
-
 	
 
 	public boolean doTheMath() {
 		try {
 			double amount = Double.parseDouble(this.amount);
 			double years = Double.parseDouble(this.years);
-			double percent  = Double.parseDouble(this.percent);	
+			double percent  = Double.parseDouble(this.percent);
+			result = Math.round((amount*(percent/100)+amount)/(years*12)*100.0)/100.0;
 			
-			double result = (amount*(percent/100)+amount)/(years/12);
 			
 			
 			
