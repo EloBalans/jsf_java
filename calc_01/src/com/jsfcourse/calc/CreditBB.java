@@ -11,36 +11,36 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 //@SessionScoped
 public class CreditBB {
-	private String amount;
-	private String years;
-	private String percent;
+	private Double amount;
+	private Double years;
+	private Double percent;
 	private Double result;
 	
 	
 	@Inject
 	FacesContext ctx;
 	
-	public String getAmount() {
+	public Double getAmount() {
 		return amount;
 	}
 
-	public void setAmount(String amount) {
+	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
 
-	public String getYears() {
+	public Double getYears() {
 		return years;
 	}
 
-	public void setYears(String years) {
+	public void setYears(Double years) {
 		this.years = years;
 	}
 
-	public String getPercent() {
+	public Double getPercent() {
 		return percent;
 	}
 
-	public void setPercent(String percent) {
+	public void setPercent(Double percent) {
 		this.percent = percent;
 	}
 	public Double getResult() {
@@ -54,9 +54,9 @@ public class CreditBB {
 
 	public boolean doTheMath() {
 		try {
-			double amount = Double.parseDouble(this.amount);
-			double years = Double.parseDouble(this.years);
-			double percent  = Double.parseDouble(this.percent);
+			double amount = getAmount();
+			double years = getYears();
+			double percent  = getPercent();
 			result = Math.round((amount*(percent/100)+amount)/(years*12)*100.0)/100.0;
 			
 			

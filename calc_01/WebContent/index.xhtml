@@ -16,21 +16,48 @@
 	<h:form id="bla">
 	<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
  
-    <h:panelGrid columns="1" cellpadding="1" style="margin-left: 80px; margin-top: 50px">
-    <h:panelGrid columns="1">
-			<p:inputText id= "amount" value="#{creditBB.amount}" placeholder="Kwota" required = "true" requiredMessage = "Wpisz kwotę!"/>
-			<p:slider for="amount" minValue="1" maxValue="10000" step="1" />
-			<p:message for="amount"/>
-    	</h:panelGrid>
-		<br />
+    
+    	<h:panelGrid columns="1" cellpadding="1" style="margin-left: 80px; margin-top: 50px">
+    	<h:panelGrid columns="1">
+			<p:outputLabel for="amount" value="Kwota:" />
+  			<p:inputNumber id='amount' 
+  				value="#{creditBB.amount}" 
+  				placeholder="kwota" 
+  				required="true" 
+  				requiredMessage="Podaj kwotę" 
+  				validatorMessage="Kwota musi być większa niż 1000zł">
+  				<f:validateDoubleRange minimum="1.0" maximum="10000.0"/>
+  			</p:inputNumber>
+		<p:slider for="amount" minValue="1.0" maxValue="10000.0" step="1.0" />
+		<p:message for="amount" />
+	</h:panelGrid>
+	
+	<br />
+	
 		<h:panelGrid columns="1" >
-			<p:inputText id= "years" value="#{creditBB.years}" placeholder="Lat" required  = "true" requiredMessage = "Wpisz na ile lat ma być kredyt!"/>
+			<p:outputLabel for="years" value="Lata:" />
+			<p:inputNumber id= "years" 
+				value="#{creditBB.years}"
+				placeholder="Lat" 
+				required  = "true" 
+				requiredMessage = "Wpisz na ile lat ma być kredyt!" 
+				validatorMessage="Powinieneś wybrać liczbe z zakresu od 1 do 50">
+				<f:validateDoubleRange minimum="1.0" maximum="50.0"/>
+			</p:inputNumber>	
 			<p:slider for="years" minValue="1" maxValue="50" step="1" />
 			<p:message for="years"/>
     	</h:panelGrid>
 		<br />  		
 		<h:panelGrid columns="1">
-        	<p:inputText id= "percent" value="#{creditBB.percent}" placeholder="Procent" required  = "true" requiredMessage = "Wpisz oprocentowanie!"/>
+			<p:outputLabel for="percent" value="Oprocentowanie:" />
+        	<p:inputNumber id= "percent" 
+        		value="#{creditBB.percent}" 
+        		placeholder="Procent" 
+        		required  = "true" 
+        		requiredMessage = "Wpisz oprocentowanie!"
+        		validatorMessage="Powinieneś wybrać liczbe z zakresu od 1 do 10">
+        		<f:validateDoubleRange minimum="1.0" maximum="50.0"/>
+        	</p:inputNumber>	
         	<p:slider for="percent" minValue="1" maxValue="10" step="0.1" />
         	<p:message for="percent"/>
     	</h:panelGrid>
